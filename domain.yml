@@ -3,15 +3,46 @@ intents:
   - goodbye
   - affirm
   - deny
+  - answer_question
+
+slots:
+  history:
+    type: list
+  question_count:
+    type: unfeaturized
+    initial_value: 0
+  qix:
+    type: unfeaturized
+  user_answer:
+    type: unfeaturized
+  points:
+    type: unfeaturized
+    initial_value: 0 
+  streak_count:
+    type: unfeaturized
+    initial_value: 0
+  end:
+    type: bool
+
+entities:
+  - user_answer
 
 actions:
 - utter_greet
 - utter_cheer_up
 - utter_goodbye
+- utter_correct
+- utter_wrong
+- utter_explain_rules
+- utter_rules
+- utter_ready
+- utter_round_over
+- action_ask_question
+- action_validate_answer
 
 templates:
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Hey! Do you want to play a game?"
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"
@@ -20,7 +51,24 @@ templates:
   utter_goodbye:
   - text: "Bye"
 
-  utter_iamabot:
+  utter_correct:
+  - text: "Correct!"
+ 
+  utter_wrong:
+  - text: "Sorry, that's wrong."
+
+  utter_explain_rules:
+  - text: "Do you want me to explain the game?"
+
+  utter_rules:
+  - text: "A round consists of 10 questions. You get 1 point for every correct answer and an extra point for streaks of 5 correct answers"
+
+  utter_ready:
+  - text: "Are you ready?"
+
+  utter_round_over:
+  - text: "The round is over. You got {points} points - Good job!"
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
