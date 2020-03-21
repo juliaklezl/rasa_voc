@@ -36,16 +36,25 @@ class ActionAskQuestion(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
             history = tracker.get_slot("history")
             question_count = int(tracker.get_slot("question_count"))
+            points = int(tracker.get_slot("points"))
+            streak_count = int(tracker.get_slot("streak_count"))
+            if question_count > 5:
+                question_count = 0
+                points = 0
+                streak_count = 0
             if history:
                 available = [i for i in range(len(QUESTIONS)) if i not in history]
             else:
                 available = list(range(len(QUESTIONS)))
                 history=[]
+            if available == []:
+                dispatcher.utter_message(text="Sorry, you have answered all available questions")
+                return []
             qix = random.choice(available)
             history.append(qix)
             question_count += 1
             dispatcher.utter_message(text=QUESTIONS[qix][0])
-            return [SlotSet("qix", qix), SlotSet("history", history), SlotSet("question_count", question_count)]
+            return [SlotSet("qix", qix), SlotSet("history", history), SlotSet("question_count", question_count), SlotSet("points", points), SlotSet("streak_count", streak_count)]
 
 class ActionValidateAnswer(Action):
 
@@ -60,9 +69,9 @@ class ActionValidateAnswer(Action):
         streak_count = int(tracker.get_slot("streak_count"))
         question_count = int(tracker.get_slot("question_count"))
         if question_count > 5:
-            end = True
+            end = "True"
         else:
-            end = False
+            end = "False"
         if user_answer.lower() == QUESTIONS[qix][1]:
             if streak_count == 4:
                 points += 2
@@ -76,6 +85,5 @@ class ActionValidateAnswer(Action):
             streak_count = 0
             dispatcher.utter_message(template="utter_wrong")
         return [SlotSet("points", points), SlotSet("streak_count", streak_count), SlotSet("end", end)]
-
 
 

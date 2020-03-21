@@ -7,7 +7,7 @@ intents:
 
 slots:
   history:
-    type: list
+    type: unfeaturized
   question_count:
     type: unfeaturized
     initial_value: 0
@@ -22,7 +22,10 @@ slots:
     type: unfeaturized
     initial_value: 0
   end:
-    type: bool
+    type: categorical
+    values:
+    - True
+    - False
 
 entities:
   - user_answer
@@ -35,10 +38,12 @@ actions:
 - utter_wrong
 - utter_explain_rules
 - utter_rules
-- utter_ready
 - utter_round_over
+- utter_play_again
+- utter_ready
 - action_ask_question
 - action_validate_answer
+- utter_default
 
 templates:
   utter_greet:
@@ -68,6 +73,12 @@ templates:
 
   utter_round_over:
   - text: "The round is over. You got {points} points - Good job!"
+
+  utter_play_again:
+  - text: "Do you want to play again?"
+
+  utter_default:
+  - text: "I'm sorry. I did not understand that. Please rephrase your answer."
 
 session_config:
   session_expiration_time: 60
