@@ -27,6 +27,11 @@
 - no way
 - not really
 
+## intent:hint
+- give me a hint
+- what's the first letter
+- please give me a hint
+
 ## intent:answer_question
 - is it [woman](user_answer)?
 - [Bad](user_answer)
@@ -61,7 +66,7 @@
 - It is [pillow](user_answer)
 - The answer is [shoe](user_answer)
 - it means [afraid](user_answer)
-- it's [nice](uder_answer)
+- it's [nice](user_answer)
 - the answer is [cake](user_answer)
 - it means [dog](user_answer)
 - it's [sister](user_answer)

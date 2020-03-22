@@ -87,3 +87,15 @@ class ActionValidateAnswer(Action):
         return [SlotSet("points", points), SlotSet("streak_count", streak_count), SlotSet("end", end)]
 
 
+class ActionGiveHint(Action):
+
+    def name(self) -> Text:
+        return "action_give_hint"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        qix = int(tracker.get_slot("qix"))
+        hint = QUESTIONS[qix][1][0]
+        dispatcher.utter_message(text=hint)
+        return []

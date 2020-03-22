@@ -42,6 +42,10 @@
   - slot{"end": "False"}
   - action_ask_question
 
+## path hint
+* hint
+  - action_give_hint
+
 ## path no more questions
 * answer_question{"user_answer": "Bad"}
   - action_validate_answer

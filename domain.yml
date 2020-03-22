@@ -4,6 +4,7 @@ intents:
   - affirm
   - deny
   - answer_question
+  - hint
 
 slots:
   history:
@@ -44,6 +45,7 @@ actions:
 - action_ask_question
 - action_validate_answer
 - utter_default
+- action_give_hint
 
 templates:
   utter_greet:
