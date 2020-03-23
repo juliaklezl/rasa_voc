@@ -33,7 +33,6 @@ entities:
 
 actions:
 - utter_greet
-- utter_cheer_up
 - utter_goodbye
 - utter_correct
 - utter_wrong
@@ -51,10 +50,6 @@ templates:
   utter_greet:
   - text: "Hey! Do you want to play a game?"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
   utter_goodbye:
   - text: "Bye"
 
@@ -68,7 +63,7 @@ templates:
   - text: "Do you want me to explain the game?"
 
   utter_rules:
-  - text: "A round consists of 10 questions. You get 1 point for every correct answer and an extra point for streaks of 5 correct answers"
+  - text: "A round consists of 10 questions. You get 1 point for every correct answer and an extra point for streaks of 5 correct answers."
 
   utter_ready:
   - text: "Are you ready?"

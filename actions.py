@@ -21,10 +21,18 @@ QUESTIONS = [("What does 'kvinna' mean in English?", "woman"),
              ("What does 'flicka' mean in English?", "girl"),
              ("What does 'bra' mean in English?", "good"),
              ("What does 'vit' mean in English?", "white"),
-             ("What does 'gron' mean in English?", "green"),
+             ("What does 'grön' mean in English?", "green"),
              ("What does 'moln' mean in English?", "cloud"),
              ("What does 'skola' mean in English?", "school"),
-             ("What does 'djur' mean in English?", "animal")]
+             ("What does 'djur' mean in English?", "animal"),
+             ("What is the opposite of 'kallt' in English?", "warm"),
+             ("What is the opposite of 'aldrig' in English?", "always"),
+             ("What is the opposite of 'vän' in English?", "enemy"),
+             ("What is the opposite of 'ung' in English?", "old"),
+             ("What is the opposite of 'full' in English?", "empty"),
+             ("What is the opposite of 'älska' in English?", "hate"),
+             ("What is the opposite of 'vänster' in English?", "right"),
+             ("What is the opposite of 'ner' in English?", "up")]
 
 class ActionAskQuestion(Action):
 
@@ -38,7 +46,7 @@ class ActionAskQuestion(Action):
             question_count = int(tracker.get_slot("question_count"))
             points = int(tracker.get_slot("points"))
             streak_count = int(tracker.get_slot("streak_count"))
-            if question_count > 5:
+            if question_count > 9:
                 question_count = 0
                 points = 0
                 streak_count = 0
@@ -68,7 +76,7 @@ class ActionValidateAnswer(Action):
         points=int(tracker.get_slot("points"))
         streak_count = int(tracker.get_slot("streak_count"))
         question_count = int(tracker.get_slot("question_count"))
-        if question_count > 5:
+        if question_count > 9:
             end = "True"
         else:
             end = "False"
@@ -96,6 +104,6 @@ class ActionGiveHint(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         qix = int(tracker.get_slot("qix"))
-        hint = QUESTIONS[qix][1][0]
+        hint = "The first letter is " + QUESTIONS[qix][1][0]
         dispatcher.utter_message(text=hint)
         return []

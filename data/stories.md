@@ -34,7 +34,6 @@
   - action_ask_question
 * answer_question{"user_answer": "Bad"}
   - action_validate_answer
-  - slot{"end": "False"}
 
 ## path ask question
 * answer_question{"user_answer": "Bad"}
